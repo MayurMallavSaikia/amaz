@@ -28,7 +28,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @RestController
 @RequestMapping("/api")
 @Tag(name = "Order")
-
+@CrossOrigin
 public class OrderController {
 
 	@Autowired
