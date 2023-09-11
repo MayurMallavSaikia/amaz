@@ -32,7 +32,7 @@ import jakarta.validation.Valid;
 @RestController
 @RequestMapping("/api")
 @Tag(name = "Authentication")
-
+@CrossOrigin
 public class AuthController {
 
 	
