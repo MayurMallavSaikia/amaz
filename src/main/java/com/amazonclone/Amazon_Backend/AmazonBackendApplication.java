@@ -32,7 +32,6 @@ import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import jakarta.validation.Valid;
 
 @SpringBootApplication
-@SecurityScheme(name = "bearerAuth", description = "JWT auth description", scheme = "bearer", type = SecuritySchemeType.HTTP, bearerFormat = "JWT", in = SecuritySchemeIn.HEADER)
 public class AmazonBackendApplication  implements CommandLineRunner {
 
 	@Bean

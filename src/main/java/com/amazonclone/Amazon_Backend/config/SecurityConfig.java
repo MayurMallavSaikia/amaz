@@ -48,8 +48,8 @@ public class SecurityConfig {
 			.disable()
 			.authorizeHttpRequests()
 			.requestMatchers(AppConstants.PUBLIC_URLS).permitAll()
-//			.requestMatchers(AppConstants.USER_URLS).hasAnyAuthority("USER", "ADMIN")
-//			.requestMatchers(AppConstants.ADMIN_URLS).hasAuthority("ADMIN")
+			.requestMatchers(AppConstants.USER_URLS).hasAnyAuthority("USER", "ADMIN")
+			.requestMatchers(AppConstants.ADMIN_URLS).hasAuthority("ADMIN")
 			.anyRequest()
 			.authenticated()
 			.and()
@@ -58,7 +58,7 @@ public class SecurityConfig {
 						response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized"))
 			.and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);	
 		
-		//http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+		http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 		
 		http.authenticationProvider(daoAuthenticationProvider());
 		
