@@ -27,7 +27,6 @@ import jakarta.validation.Valid;
 @RestController
 @RequestMapping("/api")
 @Tag(name = "Address")
-@CrossOrigin
 public class AddressController {
 
 	

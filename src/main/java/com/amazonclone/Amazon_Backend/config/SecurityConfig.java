@@ -19,6 +19,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.amazonclone.Amazon_Backend.services.UserDetailsServiceImpl;
 
@@ -29,6 +30,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @Configuration
 @EnableWebSecurity
+@EnableWebMvc
 @EnableMethodSecurity
 public class SecurityConfig {
 	
@@ -38,6 +40,7 @@ public class SecurityConfig {
 	@Autowired
 	private UserDetailsServiceImpl userDetailsServiceImpl;
 	
+	@SuppressWarnings("removal")
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http
@@ -45,8 +48,8 @@ public class SecurityConfig {
 			.disable()
 			.authorizeHttpRequests()
 			.requestMatchers(AppConstants.PUBLIC_URLS).permitAll()
-			.requestMatchers(AppConstants.USER_URLS).hasAnyAuthority("USER", "ADMIN")
-			.requestMatchers(AppConstants.ADMIN_URLS).hasAuthority("ADMIN")
+//			.requestMatchers(AppConstants.USER_URLS).hasAnyAuthority("USER", "ADMIN")
+//			.requestMatchers(AppConstants.ADMIN_URLS).hasAuthority("ADMIN")
 			.anyRequest()
 			.authenticated()
 			.and()
@@ -55,7 +58,7 @@ public class SecurityConfig {
 						response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized"))
 			.and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);	
 		
-		http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+		//http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 		
 		http.authenticationProvider(daoAuthenticationProvider());
 		

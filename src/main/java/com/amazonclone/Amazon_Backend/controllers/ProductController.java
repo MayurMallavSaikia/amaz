@@ -37,7 +37,7 @@ import jakarta.validation.Valid;
 @RestController
 @RequestMapping("/api")
 @Tag(name = "Product")
-@CrossOrigin
+
 public class ProductController {
 
 	
