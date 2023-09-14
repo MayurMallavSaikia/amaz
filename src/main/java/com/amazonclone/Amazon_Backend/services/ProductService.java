@@ -33,4 +33,6 @@ public interface ProductService {
 
 	List<ProductDTO> getAllProductsBySize(String size);
 
+	ProductDTO getProduct(Long id);
+
 }
