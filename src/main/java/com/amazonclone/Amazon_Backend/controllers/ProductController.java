@@ -74,6 +74,19 @@ public class ProductController {
 	
 	
 	
+	@GetMapping("/public/products/size/{size}")
+	public ResponseEntity<List<ProductDTO>> getAllProductsPageBySize(@PathVariable String size) {
+
+		List<ProductDTO>  productList = productService.getAllProductsBySize(size);
+
+		return new ResponseEntity<List<ProductDTO>>(productList, HttpStatus.FOUND);
+	}
+	
+	
+	
+	
+	
+	
 	@GetMapping("/public/categories/{categoryId}/products")
 	public ResponseEntity<ProductResponse> getProductsByCategory(@PathVariable Long categoryId,
 			@RequestParam(name = "pageNumber", defaultValue = AppConstants.PAGE_NUMBER, required = false) Integer pageNumber,
@@ -98,7 +111,7 @@ public class ProductController {
 		ProductResponse productResponse = productService.searchProductByKeyword(keyword, pageNumber, pageSize, sortBy,
 				sortOrder);
 
-		return new ResponseEntity<ProductResponse>(productResponse, HttpStatus.FOUND);
+		return new ResponseEntity<ProductResponse>(productResponse, HttpStatus.OK);
 	}
 	
 	

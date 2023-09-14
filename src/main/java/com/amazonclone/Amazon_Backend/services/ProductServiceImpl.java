@@ -294,6 +294,22 @@ public class ProductServiceImpl  implements ProductService{
 	}
 
 
+	@Override
+	public List<ProductDTO> getAllProductsBySize(String size) {
+   List<Product> products = productRepo.findBySize(size);
+		
+		if (products.size() == 0) {
+			throw new APIException("No Product is added in this category");
+		}
+		
+
+		List<ProductDTO> productDTOs = products.stream().map(product -> modelMapper.map(product, ProductDTO.class))
+				.collect(Collectors.toList());
+
+		return productDTOs;
+	}
+
+
 
 
 	

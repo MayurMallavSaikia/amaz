@@ -1,12 +1,14 @@
 package com.amazonclone.Amazon_Backend.entities;
 
 import java.util.ArrayList;
-
-
-
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import org.hibernate.annotations.CreationTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -40,6 +42,8 @@ public class User {
 	private Long userId;
 	
 	
+
+	
 	@NotNull
 	@Size(min = 4, max = 20, message = "First Name must be between 5 and 30 characters long")
 	@Pattern(regexp = "^[a-zA-Z]*$", message = "First Name must not contain numbers or special characters")
@@ -64,6 +68,8 @@ public class User {
 
 	@NotNull
 	private String password;
+	
+
 
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.EAGER)
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))

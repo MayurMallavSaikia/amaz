@@ -74,6 +74,7 @@ public class AmazonBackendApplication  implements CommandLineRunner {
 			Role adminRole = new Role();
 			adminRole.setRoleId(AppConstants.ADMIN_ID);
 			adminRole.setRoleName("ADMIN");
+			
 
 			Role userRole = new Role();
 			userRole.setRoleId(AppConstants.USER_ID);
@@ -96,6 +97,7 @@ public class AmazonBackendApplication  implements CommandLineRunner {
 					user.setEmail("admin@gmail.com");
 					user.setMobileNumber("9876543210");
 					user.setPassword( passwordEncoder.encode("admin"));
+					
 					
 					
 					userRepo.save(user);
